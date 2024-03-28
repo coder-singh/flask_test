@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.0/socket.io.js"></script>
+<!--    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js" integrity="sha384-2huaZvOR9iDzHqslqwpR87isEmrfxqyWOF7hr7BY6KG0+hVKLoEXMPUJw3ynWuhO" crossorigin="anonymous"></script>-->
+</head>
+<body>
+<button id="btn">work</button>
+<script>
+const socket = io('localhost:5500');
+console.log(socket);
+    socket.emit("user_landed");
+    socket.on("new_log_js", function(data){
+        console.log("here");
+        let ul = document.getElementById("chat-messages");
+        let li = document.createElement("li");
+        li.appendChild(document.createTextNode(data["message"]));
+        ul.appendChild(li);
+        ul.scrolltop = ul.scrollHeight;
+    })
+
+</script>
+<ul id="chat-messages"></ul>
+</body>
+</html>
